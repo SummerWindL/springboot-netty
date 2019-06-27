@@ -5,12 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication(scanBasePackages = "com.cluster")
-public class SpringbootNettyApplication implements CommandLineRunner {
+public class SpringbootNettyApplication extends SpringBootServletInitializer implements CommandLineRunner {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringbootNettyApplication.class, args);
+    }
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(this.getClass());
     }
 
     @Autowired
